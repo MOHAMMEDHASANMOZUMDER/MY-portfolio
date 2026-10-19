@@ -2046,6 +2046,90 @@ body[data-theme="light"] .live-demo-link {
   object-fit: contain;
 }
 
+
+
+      /* Final responsive and navigation fixes */
+      img, video, canvas, svg { max-width: 100%; }
+      .projects {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      }
+      .project, .project-visual, .project-body, .hero > *, .about-grid > *, .contact > * {
+        min-width: 0;
+      }
+      .project-image {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1.47 / 1;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+      .project-visual { min-height: 0; }
+      .code, .line, .lead, .section-copy, .project p, .contact-info, .about-main {
+        overflow-wrap: anywhere;
+      }
+      .resume-link { white-space: nowrap; }
+      .social-link img { width: 22px; height: 22px; }
+
+      @media (max-width: 980px) {
+        .hero { grid-template-columns: minmax(0, 1fr); }
+      }
+      @media (max-width: 760px) {
+        nav { padding: .55rem; }
+        nav.scrolled { padding: .45rem .55rem; }
+        .nav-inner {
+          width: 100%;
+          gap: .55rem;
+          padding: .7rem .8rem;
+          align-items: center;
+        }
+        .nav-links, .nav-cta { display: none; }
+        .menu-btn { display: grid; flex: 0 0 auto; }
+        .nav-inner.open {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto auto;
+          align-items: center;
+          border-radius: 22px;
+        }
+        .nav-inner.open .brand { grid-column: 1; grid-row: 1; }
+        .nav-inner.open #themeBtn { grid-column: 2; grid-row: 1; }
+        .nav-inner.open .menu-btn { grid-column: 3; grid-row: 1; }
+        .nav-inner.open .nav-links {
+          display: grid;
+          grid-column: 1 / -1;
+          grid-row: 2;
+          width: 100%;
+          gap: .2rem;
+          padding-top: .45rem;
+        }
+        .nav-inner.open .nav-links a {
+          display: flex;
+          width: 100%;
+          justify-content: flex-start;
+          padding: .65rem .75rem;
+        }
+        .nav-inner.open .nav-cta {
+          display: inline-flex;
+          grid-column: 1 / -1;
+          grid-row: 3;
+          width: 100%;
+        }
+        .brand { gap: .45rem; font-size: .95rem; }
+        .brand-mark { flex: 0 0 auto; }
+        .theme-btn, #themeBtn { flex-shrink: 0; }
+        .hero { padding-left: 1rem; padding-right: 1rem; }
+        .container { padding-left: 1rem; padding-right: 1rem; }
+        h1 { font-size: clamp(2.65rem, 13vw, 4rem); }
+        .project-visual { padding: .8rem; }
+      }
+      @media (max-width: 380px) {
+        .nav-inner { padding: .55rem; gap: .3rem; }
+        .brand { font-size: .85rem; }
+        .brand-mark { width: 2rem; height: 2rem; }
+        .menu-btn { width: 2.35rem; height: 2.35rem; }
+      }
+
     </style>
   </head>
 
@@ -2064,13 +2148,13 @@ body[data-theme="light"] .live-demo-link {
           <span>Hasan.dev</span>
         </a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="primaryNavigationLinks">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#focus">Focus</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="/MohammedHasan_Resume.pdf" download="MohammedHasan-Resume.pdf" class='nav-links'>
+          <li><a href="/MohammedHasan_Resume.pdf" download="MohammedHasan-Resume.pdf" class="resume-link">
    📜Resume
   </a></li>
           <li><a href="https://www.linkedin.com/in/mohammed-hasan-cuet"><img src="/linkedin.png" alt="" style="height: 20px; width: 20px;"></a></li>
@@ -2085,11 +2169,7 @@ body[data-theme="light"] .live-demo-link {
     <img src="/github.png" alt="GitHub">
   </a>
 </li>        </ul>
-        <div className="flex items-center gap-3">
-
-</div>
-
-        <a class="nav-cta" href="#contact"> Let's Talk </a>
+                <a class="nav-cta" href="#contact"> Let's Talk </a>
 
         <button id="themeBtn" class="toggle" type="button"></button>
 
@@ -2097,7 +2177,8 @@ body[data-theme="light"] .live-demo-link {
           class="menu-btn"
           id="menuBtn"
           type="button"
-          aria-label="Open menu"
+          aria-label="Open navigation menu"
+          aria-controls="primaryNavigationLinks"
           aria-expanded="false"
         >
           ☰
@@ -2411,7 +2492,7 @@ body[data-theme="light"] .live-demo-link {
 
           <article class="project reveal">
             <div class="project-visual">
-              <img style="height: 224px; width: 329px; border-radius:20px;" src="library.png" alt="Project overview">
+              <img class="project-image" src="library.png" alt="NexusStore project preview" loading="lazy">
             </div>
 
             <div class="project-body">
@@ -2465,7 +2546,7 @@ body[data-theme="light"] .live-demo-link {
           <!--Project-2-->
           <article class="project reveal">
             <div class="project-visual">
-              <img style="height: 224px; width: 329px; border-radius:20px;" src="abroad.png" alt="Project overview">
+              <img class="project-image" src="abroad.png" alt="CUET Study Abroad Helper project preview" loading="lazy">
             </div>
 
             <div class="project-body">
@@ -2480,7 +2561,7 @@ body[data-theme="light"] .live-demo-link {
               <h3>CUET Study Abroad Helper</h3>
 
               <p>
-                **CUET Study Abroad Helper** is a web application that helps
+                <strong>CUET Study Abroad Helper</strong> is a web application that helps
                 students explore international universities, discover
                 scholarships, compare study destinations, and plan their global
                 education journey in one place.
@@ -2491,7 +2572,7 @@ body[data-theme="light"] .live-demo-link {
               <span class="pill">React.js</span>
               <span class="pill">JavaScript</span>
               <span class="pill">CSS</span>
-              <span class="pill">PostgreSQL</spa>
+              <span class="pill">PostgreSQL</span>
               </div>
 
               <div class="project-links">
@@ -2519,7 +2600,7 @@ body[data-theme="light"] .live-demo-link {
 
           <article class="project reveal">
             <div class="project-visual">
-              <img style="height: 224px; width: 329px; border-radius:20px;" src="lib.png" alt="Project overview">
+              <img class="project-image" src="lib.png" alt="University Library Management System project preview" loading="lazy">
             </div>
 
             <div class="project-body">
@@ -2820,12 +2901,29 @@ body[data-theme="light"] .live-demo-link {
 
       updateScroll();
 
+      function closeMobileMenu() {
+        navInner.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open navigation menu");
+        menuBtn.textContent = "☰";
+      }
+
       menuBtn.addEventListener("click", () => {
         const open = navInner.classList.toggle("open");
-
         menuBtn.setAttribute("aria-expanded", String(open));
-
+        menuBtn.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu"
+        );
         menuBtn.textContent = open ? "×" : "☰";
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMobileMenu();
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!navInner.contains(event.target)) closeMobileMenu();
       });
 
       themeBtn.addEventListener("click", () => {
@@ -2835,15 +2933,9 @@ body[data-theme="light"] .live-demo-link {
         applyTheme(nextTheme);
       });
 
-      navLinks.forEach((link) =>
-        link.addEventListener("click", () => {
-          navInner.classList.remove("open");
-
-          menuBtn.setAttribute("aria-expanded", "false");
-
-          menuBtn.textContent = "☰";
-        }),
-      );
+      navLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
 
       /* =========================
      REVEAL ANIMATION
@@ -3118,11 +3210,11 @@ body[data-theme="light"] .live-demo-link {
           const originalText = button.textContent;
 
           const payload = {
-            name: form.name.value.trim(),
+            name: form.elements.namedItem("name").value.trim(),
 
-            email: form.email.value.trim(),
+            email: form.elements.namedItem("email").value.trim(),
 
-            message: form.message.value.trim(),
+            message: form.elements.namedItem("message").value.trim(),
           };
 
           if (!payload.name || !payload.email || !payload.message) {
